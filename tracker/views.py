@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+def home_view(request):
+    return render(request, 'tracker/home.html')
+
+def error_view(request):
+    return render(request, 'tracker/error.html')
+    
