@@ -13,3 +13,4 @@ class CreateExpenseForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 2})
         }
+
