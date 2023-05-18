@@ -10,20 +10,30 @@
     </td>
     {% else %}
     <td class="text-muted">
-        no description provided
+        No description available
     </td>
     {% endif %}
-    <td>{{ obj.amount }}</td>
+    {% if obj.transaction_type.name == 'Debit' %}
+    <td class="text-danger">
+        -{{ obj.amount }}
+    </td>
+    {% else %}
+    <td class="text-success">
+        {{ obj.amount }}
+    </td>
+    {% endif %}
+    </td>
     <td>{{ obj.category }}</td>
     <td>{{ obj.created_at }}</td>
     <td>
         <button id="update-btn" class="btn btn-primary update_btn" data-url="{% url 'update' obj.id %}">
             Update
-        </button> 
+        </button>
         <button id="delete-btn" class="btn btn-danger" data-url="{% url 'delete' obj.id %}">
             Delete
         </button>
     </td>
+
 </tr>
 {% empty %}
 There are no items in this list
