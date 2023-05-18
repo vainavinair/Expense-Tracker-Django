@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+
+{% for obj in expenses %}
+<tr>
+    <th scope="row">{{ forloop.counter }}</th>
+    <td>{{ obj.title }}</td>
+    {% if obj.description %}
+    <td>
+        {{ obj.description }}
+    </td>
+    {% else %}
+    <td class="text-muted">
+        no description provided
+    </td>
+    {% endif %}
+    <td>{{ obj.amount }}</td>
+    <td>{{ obj.category }}</td>
+    <td>{{ obj.created_at }}</td>
+    <td>
+        <button id="update-btn" class="btn btn-primary update_btn" data-url="{% url 'update' obj.id %}">
+            Update
+        </button> 
+        <button id="delete-btn" class="btn btn-danger" data-url="{% url 'delete' obj.id %}">
+            Delete
+        </button>
+    </td>
+</tr>
+{% empty %}
+There are no items in this list
+
+{% endfor %}

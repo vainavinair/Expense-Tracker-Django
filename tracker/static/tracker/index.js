@@ -1,55 +1,50 @@
-$(document).ready(function() {
-    $("#submit_btn").click(function(event) {
-        event.preventDefault();
-        
-        var formData = new FormData();
-        formData.append("csrfmiddlewaretoken", $("input[name='csrfmiddlewaretoken']").val());
-        formData.append("title", $("#id_title").val());
-        formData.append("description", $("#id_description").val());
-        formData.append("amount", parseInt($("#id_amount").val()));
-        formData.append("category", $("#id_category").val());
+$(function(){
+    var loadForm = function(){
+      console.log('yoyoyoy');
+      var btn = $(this);
+      $.ajax({
+        url: btn.attr("data-url"),
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function(){
+          $('#formModel').modal('show');
+        },
+        success: function(response){
+          $("#formModel .modal-content").html(response.html_form);
+        },
+      });
+    };
+  
+    var saveForm = function () {
+      var form = $(this);
+      $.ajax({
+        url: form.attr("action"),
+        data: form.serialize(),
+        type: form.attr("method"),
+        dataType: 'json',
+        success: function (response) {
+          if (response.form_is_valid) {
+            $("#expense-table tbody").html(response.table_html);
+            $("#formModel").modal("hide");  
+          } else {
+            $("#formModel .modal-content").html(response.html_form);
+          }
+        }
+      });
+      return false;
+    };
+  
 
-        $.ajax({
-            type: "POST",
-            url: "",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                $("#id_title").val("");
-                $("#id_description").val("");
-                $("#id_amount").val("");
-                $("#id_category").val("");
-            },
-            error: function(xhr, status, error) {
-                console.log("Error occurred while submitting the form data:", error);
-            }
-        });
 
-    });
-    $(document).ready(function() {
-        $("#delete_btn").click(function(event) {
-            mythis = this;
-            event.preventDefault();
-    
-            // Get the expense ID from the HTML attribute or any other way that you're using
-            var expenseId = $(this).attr("data-expense-id");
-    
-            // Send an AJAX request to delete the expense
-            $.ajax({
-                type: "DELETE",
-            url: "/" + expenseId + "/delete/",
-            headers: {
-                "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
-            },
-            success: function(response) {
-                location.reload();
-            },
-            error: function(xhr, status, error) {
-                console.log("Error occurred while deleting the expense:", error);
-            }
-            });
-        });
-    });
-    
-});
+    $("#create-btn").click(loadForm);
+    $("#formModel").on("submit", ".create-form", saveForm);
+
+
+    $("#expense-table").on("click", "#update-btn", loadForm);
+    $("#formModel").on("submit", ".update-form", saveForm);
+
+    $("#expense-table").on("click", "#delete-btn", loadForm);
+    $("#formModel").on("submit", ".delete-form", saveForm);
+
+  });
+  
