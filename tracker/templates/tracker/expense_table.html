@@ -15,7 +15,7 @@
     {% endif %}
     {% if obj.transaction_type.name == 'Debit' %}
     <td class="text-danger">
-        -{{ obj.amount }}
+        {{ obj.amount }}
     </td>
     {% else %}
     <td class="text-success">

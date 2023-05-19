@@ -1,6 +1,6 @@
 $(function(){
     var loadForm = function(){
-      console.log('yoyoyoy');
+
       var btn = $(this);
       $.ajax({
         url: btn.attr("data-url"),
@@ -24,6 +24,7 @@ $(function(){
         dataType: 'json',
         success: function (response) {
           if (response.form_is_valid) {
+            $("#sum-div").html(response.sums_html);
             $("#expense-table tbody").html(response.table_html);
             $("#formModel").modal("hide");  
           } else {
