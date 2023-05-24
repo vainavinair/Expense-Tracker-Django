@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('tracker.urls')),
     path('users/', include('users.urls')),
     path('charts/', include('charts.urls')),
+    path('category/', include('category.urls')),
 ]

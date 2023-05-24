@@ -8,8 +8,9 @@ class ExpenseForm(forms.ModelForm):
             'title',
             'description',
             'amount',
+            'transaction_type',
             'category',
-            'transaction_type'
+            
         )
         widgets = {
             'description': forms.Textarea(attrs={'rows': 2})

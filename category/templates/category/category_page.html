@@ -1,0 +1,33 @@
+
+{% extends 'tracker/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+            <form method="post">
+                <legend>
+                    Add a new Category
+                </legend>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-outline-dark" type="submit">
+                   Add Category
+                </button>
+            </form>
+        <div>
+            <ul class="list-group">
+                {% for category in categories %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ category.name }}
+                    <a href=' {% url 'delete_category' category.id %} 'class="btn btn-danger">DELETE</a>
+                </li>
+                {% endfor %}
+            </ul>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}

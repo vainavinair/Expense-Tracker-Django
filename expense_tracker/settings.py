@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'tracker',
     'users',
     'charts',
+    'category',
 ]
 
 MIDDLEWARE = [
