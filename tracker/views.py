@@ -42,7 +42,10 @@ def save_expense(request,form,template_name):
             user = request.user  
             form.instance.user = user
             if form.instance.transaction_type.name == 'Debit':
-                form.instance.amount = -form.instance.amount
+                if form.instance.amount > 0 :
+                    form.instance.amount = -form.instance.amount
+            elif form.instance.transaction_type.name == 'Credit':
+                form.instance.amount = abs(form.instance.amount)
             form.save()
             data['form_is_valid'] = True
             expenses = Expense.objects.filter(user=request.user).order_by('-created_at')

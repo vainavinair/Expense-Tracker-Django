@@ -1,7 +1,6 @@
 from django.urls import path 
-from .views import index_view, expense_chart_data
+from .views import index_view
 
 urlpatterns = [
-    path('', index_view, name='chart'),
-     path('expense-chart-data/', expense_chart_data, name='expense-chart-data')
+    path('<id>/', index_view, name='user-profile'),
 ]
