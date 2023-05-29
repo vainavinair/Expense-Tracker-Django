@@ -22,7 +22,7 @@ def verify(request, auth_token):
         if not profile_obj.verification:
             profile_obj.verification=True
             profile_obj.save() 
-            messages.success(request,f"Account has been verified. Welcome to our blog app {profile_obj.username}!")
+            messages.success(request,f"Account has been verified. Welcome to SpendWise {profile_obj.username}!")
             return redirect('user-login')
         else:
             messages.success(request,f"Account has been verified already")

@@ -1,8 +1,7 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
 
-<div class="container-fluid m-4">
-    <div class="container">
+<div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <h2> Welcome {{user.username}}, <br> This is <br> your Transaction Logs</h2>
@@ -10,9 +9,7 @@
             <div class="col-md-6 text-right " id="sum-div">
               {% include 'tracker/sums.html' %}
             </div>
-            <button type="button" class="btn btn-secondary" data-url="{% url 'create' %}" id="create-btn">
-                Add a new Transaction
-            </button>
+
         </div>
     </div>
 
@@ -26,6 +23,11 @@
 
     <div class="container-fluid row justify-content-center">
         <div class="col-md-10 mt-3">
+            <div class="justify-align-right">
+                <button type="button" class="btn btn-primary my-3" data-url="{% url 'create' %}" id="create-btn">
+                    Add a new Transaction
+                </button>
+            </div>
             <div class="table-responsive">
                 <table class="table" id="expense-table">
                     <thead class="thead-dark">
