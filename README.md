@@ -43,3 +43,8 @@ Make sure you have Python and PostgreSQL installed on your system before proceed
 7. The app provides graphs and pie charts to visualize your expense data.
 8. Use the app to track your expenses and manage your financial data efficiently.
 
+## Video Demo
+
+
+https://github.com/vainavinair/Expense-Tracker-Django/assets/109602044/78f4359e-3d7c-4b24-9eab-1a188807468e
+
